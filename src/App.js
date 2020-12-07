@@ -1,50 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
+import LandingPage from './containers/LandingPage';
+import APIRootPage from './containers/APIRootPage';
 import {
-  ChakraProvider,
-  CSSReset,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-} from '@chakra-ui/core';
-import theme from '@chakra-ui/theme';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+  BrowserRouterProps,
+} from "react-router-dom";
 
-function App() {
-  return (
-    <ChakraProvider theme={theme}>
-      <CSSReset />
-      <Box textAlign="center" fontSize="xl">
-        <Grid
-          minH="100vh"
-          p={3}
-          direction="column"
-          align="center"
-          justify="center"
-        >
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
-  );
+
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/" render={LandingPage} />
+          <Route exact path="/root" render={APIRootPage}/>
+        </Switch>
+      </Router>
+    )
+  }
 }
 
 export default App;
